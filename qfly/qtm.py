@@ -4,7 +4,7 @@ import os
 from threading import Thread
 import xml.etree.cElementTree as ET
 
-import qtm
+import qtm_rt as qtm
 
 from qfly import Pose
 

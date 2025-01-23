@@ -24,8 +24,9 @@ qfly can control swarms comprising an arbitrary combination of drones, e.g. [Bit
 - [Python](https://www.python.org/) 3.10 or equivalent
 - Python packages:
     - [cflib](https://github.com/bitcraze/crazyflie-lib-python) (for Crazyflie Drones) 0.1.18 or equivalent
-    - [qtm](https://github.com/qualisys/qualisys_python_sdk) (Qualisys Python SDK) 2.1.1 or equivalent
+    - [qtm-rt](https://github.com/qualisys/qualisys_python_sdk) (Qualisys Python SDK) 2.1.1 or equivalent
     - [pynput](https://github.com/moses-palmer/pynput)  1.7.6 or equivalent
+    - [scipy](https://github.com/scipy/scipy)  tested with 1.15.1
 
 qfly has been designed and tested on Windows.
 
