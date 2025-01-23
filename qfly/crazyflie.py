@@ -2,6 +2,8 @@ from threading import Thread
 import time
 import traceback
 
+from scipy.spatial.transform import Rotation as R
+
 from cflib.crazyflie.log import LogConfig
 from cflib.crazyflie.syncLogger import SyncLogger
 
@@ -427,15 +429,7 @@ class QualisysCrazyflie(Thread):
         self.pose = pose
         # Send to Crazyflie
         if self.cf is not None:
-            self.cf.extpos.send_extpos(pose.x, pose.y, pose.z)
-            # qw = qfly.utils.sqrt(
-            #     1 + pose.rotmatrix[0][0] + pose.rotmatrix[1][1] + pose.rotmatrix[2][2]) / 2
-            # qx = qfly.utils.sqrt(
-            #     1 + pose.rotmatrix[0][0] - pose.rotmatrix[1][1] - pose.rotmatrix[2][2]) / 2
-            # qy = qfly.utils.sqrt(
-            #     1 - pose.rotmatrix[0][0] + pose.rotmatrix[1][1] - pose.rotmatrix[2][2]) / 2
-            # qz = qfly.utils.sqrt(
-            #     1 - pose.rotmatrix[0][0] - pose.rotmatrix[1][1] + pose.rotmatrix[2][2]) / 2
-            # ql = qfly.utils.sqrt(qx ** 2 + qy ** 2 + qz ** 2 + qw ** 2)
-            # self.cf.extpos.send_extpose(
-            #     pose.x, pose.y, pose.z, qx / ql, qy / ql, qz / ql, qw / ql)
+            r = R.from_matrix(pose.rotmatrix)
+            q = r.as_quat()
+
+            self.cf.extpos.send_extpose(pose.x, pose.y, pose.z, q[0], q[1], q[2], q[3])

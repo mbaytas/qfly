@@ -27,9 +27,9 @@ class Pose:
             6D pose data from QTM component
         """
         qtm_rot = qtm_6d[1].matrix
-        rotmatrix = [[qtm_rot[0], qtm_rot[3], qtm_rot[6]],
-                     [qtm_rot[1], qtm_rot[4], qtm_rot[7]],
-                     [qtm_rot[2], qtm_rot[5], qtm_rot[8]]]
+        rotmatrix = [[qtm_rot[0], qtm_rot[1], qtm_rot[2]],
+                     [qtm_rot[3], qtm_rot[4], qtm_rot[5]],
+                     [qtm_rot[6], qtm_rot[7], qtm_rot[8]]]
         return cls(qtm_6d[0][0] / 1000,
                    qtm_6d[0][1] / 1000,
                    qtm_6d[0][2] / 1000,
@@ -76,4 +76,4 @@ class Pose:
     def __str__(self):
         # return "x: {:6.2f} y: {:6.2f} z: {:6.2f} Roll: {:6.2f} Pitch: {:6.2f} Yaw: {:6.2f}".format(
         # self.x, self.y, self.z, self.roll, self.pitch, self.yaw)
-        return f'x: {self.x} y: {self.y} z: {self.z} yaw: {self.yaw}'
+        return f'x: {self.x} y: {self.y} z: {self.z} roll: {self.roll} pitch: {self.pitch} yaw: {self.yaw}'
